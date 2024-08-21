@@ -102,11 +102,13 @@ createDataDictionary <- function(data = NULL) {
     sameDir <- "yes"
   }
   
+  is_created <- FALSE
   output_file <- ifelse(sameDir == "yes", paste0(workDirectory,"/",dictName,".xlsx"),
                         paste0(svDialogs::dlg_dir()$res,"/",dictName,".xlsx") )
   
   openxlsx::write.xlsx(tab, output_file, asTable = TRUE)
-  svDialogs::dlg_message("Data dictionary successfully created!")
+  is_created <- TRUE
+  if(is_created) svDialogs::dlg_message("Data dictionary successfully created!")
 }
 
 # Example usage:
