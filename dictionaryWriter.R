@@ -34,7 +34,11 @@ createDataDictionary <- function(data = NULL) {
       df <- read_sav(path)
     } else if(getExtension(path) == "spss") {
       df <- read_spss(path)
-    }
+    } else if(getExtension(path) == "sas7bdat") {
+      df <- read_sas(path)
+    } else {
+        return("This function is not compatible with your selected file")
+    } 
     
   } else {
     workDirectory <- dlg_dir(title = "Choose directory to store your dictionary")$res # Use this to select a directory to 
