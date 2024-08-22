@@ -85,10 +85,10 @@ createDataDictionary <- function(data = NULL) {
     Labels = sapply(sapply(df, attr, 'label'), toString),
     Data_type = Dtypes ,
     Missing_perc = (miss <- sapply(df, prop_missing)),
-    Missing_n = sapply(df,n_missing),
-    Min_score = ifelse(miss < 100,apply(df,2,min, na.rm = TRUE), "No data" ),
-    Max_score = ifelse(miss < 100,apply(df,2,max, na.rm = TRUE), "No data" ),
-    means = ifelse(miss < 100&Dtypes=="numeric",sapply(df, Means), "" ),
+    Missing_n = sapply(df, n_missing),
+    Min_score = ifelse(miss < 100, apply(df,2,min, na.rm = TRUE), "No data" ),
+    Max_score = ifelse(miss < 100, apply(df,2,max, na.rm = TRUE), "No data" ),
+    means = ifelse(miss < 100 & Dtypes=="numeric",sapply(df, Means), "" ),
     `Value:Counts` = ifelse(Dtypes == "factor", sapply(as_factor(df), Table), ""),
     `Value:Labels` = ifelse(Dtypes == "factor", sapply(df, Label), "")
   )
