@@ -89,8 +89,10 @@ createDataDictionary <- function(data = NULL) {
     Min_score = ifelse(miss < 100, apply(df,2,min, na.rm = TRUE), "No data" ),
     Max_score = ifelse(miss < 100, apply(df,2,max, na.rm = TRUE), "No data" ),
     means = ifelse(miss < 100 & Dtypes=="numeric",sapply(df, Means), "" ),
-    `Value:Counts` = ifelse(Dtypes == "factor", sapply(as_factor(df), Table), ""),
-    `Value:Labels` = ifelse(Dtypes == "factor", sapply(df, Label), "")
+    `Value:Counts` = ifelse(Dtypes %in% c("factor","character","logical"), 
+                            sapply(as_factor(df), Table), ""),
+    `Value:Labels` = ifelse(Dtypes %in% c("factor","character","logical"), 
+                            sapply(df, Label), "")
   )
   
   names(tab)[c(3:10)] <- c("Data type","% missing", "Number of missing","Min score","Max score",
