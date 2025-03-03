@@ -1,8 +1,9 @@
 checkNecessaryPackages <- function(required_packages = c("haven", "openxlsx", "svDialogs", "moments")) {
-  inst <- installed.packages()[required_packages, "Version"]
+  inst <- installed.packages()
   if (!all(required_packages %in% inst)) {
-      install.packages(setdiff(required_packages, rownames(inst)))
-    }
+    install.packages(setdiff(required_packages, rownames(inst)))
+  }
+  inst <- inst[required_packages, "Version"]
   aval <- available.packages()[required_packages, "Version"]
   
   pkg_table <- data.frame(Installed = inst, Available = aval, row.names = required_packages)
